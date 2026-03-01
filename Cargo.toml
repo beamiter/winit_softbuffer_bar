@@ -1,0 +1,16 @@
+[package]
+name = "winit_softbuffer_bar"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+libc = "0.2.176"
+xbar_core = { git = "https://github.com/beamiter/xbar_core.git" }
+shared_structures = { git = "https://github.com/beamiter/shared_structures.git", features = ["use-futex"] }
+softbuffer = "0.4.6"
+pango = "0.21.3"
+cairo-rs = "0.21.2"
+log = "0.4.28"
+winit = "0.30.12"
+anyhow = "1.0.100"
+bytemuck = "1.23.2"
