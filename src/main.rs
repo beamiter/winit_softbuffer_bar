@@ -1,7 +1,5 @@
 use anyhow::Result;
-use cairo::{Context, Format, ImageSurface};
 use log::warn;
-use pango::FontDescription;
 use shared_structures::SharedRingBuffer;
 use std::env;
 use std::sync::Arc;
@@ -18,8 +16,11 @@ use winit::{
 };
 
 use xbar_core::{
-    AppState, BarConfig, Color, ShapeStyle, ThemeMode, colors_for_theme, draw_bar,
-    initialize_logging, spawn_shared_eventfd_notifier,
+    AppState, BarConfig, Color, ShapeStyle, ThemeMode,
+    cairo::{Context, Format, ImageSurface},
+    colors_for_theme, draw_bar, initialize_logging,
+    pango::FontDescription,
+    spawn_shared_eventfd_notifier,
 };
 
 fn tuned_colors_for_theme(mode: ThemeMode) -> xbar_core::Colors {
@@ -248,7 +249,7 @@ impl App {
             let cr = Context::new(&back.image)?;
             cr.save()?;
             cr.set_source_rgba(0.0, 0.0, 0.0, 1.0);
-            cr.set_operator(cairo::Operator::Source);
+            cr.set_operator(xbar_core::cairo::Operator::Source);
             cr.paint()?;
             cr.restore()?;
 
